@@ -1,0 +1,2 @@
+# minesweepy
+ Avalonia minesweeper app.
