@@ -4,8 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="minesweepy.MainWindow"
-        Title="minesweepy">
 
-		<Button HorizontalAlignment="Center">Calculate</Button>
-    	Welcome to Avalonia!
+        Title="minesweepy"
+		Width="600" 
+		Height="600"
+    	>
+
+		<Grid x:Name="BoardGrid" ShowGridLines="True">
+		</Grid>
+		
 </Window>
