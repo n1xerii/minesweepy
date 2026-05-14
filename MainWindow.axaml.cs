@@ -4,7 +4,7 @@ namespace minesweepy;
 
 public partial class MainWindow : Window
 {
-    private Cell[,] cells;
+    //private Cell[,] cells;
     
     public MainWindow()
     {
