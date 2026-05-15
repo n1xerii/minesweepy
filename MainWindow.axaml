@@ -10,7 +10,7 @@
 		Height="600"
     	>
 
-		<Grid x:Name="BoardGrid" ShowGridLines="True">
+		<Grid x:Name="BoardGrid" ShowGridLines="True" ColumnSpacing="1.5">
 		</Grid>
 		
 </Window>

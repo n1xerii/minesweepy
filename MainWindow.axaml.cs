@@ -38,9 +38,10 @@ public partial class MainWindow : Window
                 
                 Grid.SetRow(button, r);
                 Grid.SetColumn(button, c);
+                
                 button.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch;
                 button.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch;
-
+                
                 BoardGrid.Children.Add(button);
             }
         }
