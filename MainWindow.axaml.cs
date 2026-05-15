@@ -1,10 +1,13 @@
+using System;
 using Avalonia.Controls;
 
 namespace minesweepy;
 
 public partial class MainWindow : Window
 {
-    //private Cell[,] cells;
+    private Cell[,]? cells;
+    //private Button[,] buttons;
+    
     private int rows = 10;
     private int cols = 10;
     
@@ -20,6 +23,8 @@ public partial class MainWindow : Window
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
         BoardGrid.Children.Clear();
+        
+        cells = new Cell[rows, cols];
 
         for (int r = 0; r < rows; r++)
         {
@@ -34,6 +39,7 @@ public partial class MainWindow : Window
         {
             for (int c = 0; c < cols; c++)
             {
+                cells[r, c] = new Cell();
                 var button = new Button();
                 
                 Grid.SetRow(button, r);
@@ -45,6 +51,7 @@ public partial class MainWindow : Window
                 BoardGrid.Children.Add(button);
             }
         }
+        Console.WriteLine("Amount of cells: " + cells.Length);
     }
     
     //private void CellClicked(object? sender, RoutedEventArgs e)
