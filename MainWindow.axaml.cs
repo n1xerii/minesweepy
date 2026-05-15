@@ -1,5 +1,6 @@
 using System;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 
 namespace minesweepy;
 
@@ -60,4 +61,10 @@ public partial class MainWindow : Window
     //    if (sender is Button btn)
     //        btn.Content = "•";
     //}
+    
+    private void Settings_Click(object? sender, RoutedEventArgs e)
+    {
+        var window = new SettingsWindow();
+        window.Show();
+    }
 }
