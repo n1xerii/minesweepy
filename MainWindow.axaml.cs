@@ -51,6 +51,7 @@ public partial class MainWindow : Window
                 BoardGrid.Children.Add(button);
             }
         }
+        
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
     
