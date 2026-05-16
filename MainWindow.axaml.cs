@@ -9,9 +9,28 @@ public partial class MainWindow : Window
     private Cell[,]? cells;
     //private Button[,] buttons;
     
-    private int rows = 10;
-    private int cols = 10;
+    private int rows;
+    private int columns;
     private int mineCount;
+    
+    public int Rows
+    {
+        get { return rows; }
+        set 
+        { 
+            if (value <= 0) { rows = 10; }
+            else { rows = value; }
+        }
+    }
+    public int Columns
+    {
+        get { return columns; }
+        set 
+        {
+            if (value <= 0) { columns = 10; }
+            else { columns = value; }
+        }
+    }
     public int MineCount
     {
         get { return mineCount; }
@@ -27,9 +46,16 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         SetBoard(rows, cols);
+        SetGameData(10, 10, 1);
     }
 
-    public void SetBoard(int givenRows, int givenCols)
+    private void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
+    {
+        Rows = amountOfRows;
+        Columns = amountOfCols;
+        mineCount = amountOfMines;
+    }
+    public void MakeBoard(int givenRows, int givenCols)
     {
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
