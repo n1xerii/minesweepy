@@ -41,6 +41,7 @@ public partial class MainWindow : Window
             for (int c = 0; c < cols; c++)
             {
                 cells[r, c] = new Cell();
+                
                 var button = new Button();
                 
                 Grid.SetRow(button, r);
@@ -54,6 +55,25 @@ public partial class MainWindow : Window
         }
         
         Console.WriteLine("Amount of cells: " + cells.Length);
+    }
+
+    private void FindNeighbors(int row, int col)
+    {
+        var cell = cells[row, col];
+        if (cell == null) { return; }
+        
+        
+        //startCell.
+    }
+
+    private void RevealCell(Cell cell, int atRow, int atCol)
+    {
+        cell.revealed = true;
+    }
+
+    private void FlagCell(Cell cell, int atRow, int atCol)
+    {
+        cell.flagged = true;
     }
     
     //private void CellClicked(object? sender, RoutedEventArgs e)
