@@ -1,4 +1,5 @@
 using System;
+using System.Data.Common;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -45,8 +46,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        SetBoard(rows, cols);
+        
         SetGameData(10, 10, 1);
+        MakeBoard(rows, columns);
+        FindNeighbors(1,1);
     }
 
     private void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
