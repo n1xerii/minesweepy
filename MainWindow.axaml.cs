@@ -8,7 +8,7 @@ namespace minesweepy;
 public partial class MainWindow : Window
 {
     private Cell[,]? cells;
-    //private Button[,] buttons;
+    private Button[,]? buttons;
     
     private int rows;
     private int columns;
@@ -65,7 +65,8 @@ public partial class MainWindow : Window
         BoardGrid.Children.Clear();
         SetBoardGridDefinitions();
         
-        cells = new Cell[rows, cols];
+        cells = new Cell[Rows, Columns];
+        buttons = new Button[Rows, Columns];
 
         for (int r = 0; r < Rows; r++)
         {
@@ -74,6 +75,7 @@ public partial class MainWindow : Window
                 cells[r, c] = new Cell();
                 
                 var button = new Button();
+                buttons[r, c] = button;
                 
                 Grid.SetRow(button, r);
                 Grid.SetColumn(button, c);
