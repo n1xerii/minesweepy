@@ -102,14 +102,16 @@ public partial class MainWindow : Window
         //startCell.
     }
 
-    private void RevealCell(Cell cell, int atRow, int atCol)
+    private void RevealCell(int atRow, int atCol)
     {
-        cell.revealed = true;
+        if (cells == null) { return; }
+        cells[atRow, atCol].revealed = true;
     }
 
     private void FlagCell(Cell cell, int atRow, int atCol)
     {
-        cell.flagged = true;
+        if (cells == null) { return; }
+        cells[atRow, atCol].flagged = true;
     }
     
     //private void CellClicked(object? sender, RoutedEventArgs e)
