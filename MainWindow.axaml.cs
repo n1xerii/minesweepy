@@ -11,6 +11,16 @@ public partial class MainWindow : Window
     
     private int rows = 10;
     private int cols = 10;
+    private int mineCount;
+    public int MineCount
+    {
+        get { return mineCount; }
+        set 
+        {
+            if (value <= 0) { mineCount = 1; }
+            else { mineCount = value; }
+        }
+    }
     
     
     public MainWindow()
