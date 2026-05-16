@@ -60,21 +60,13 @@ public partial class MainWindow : Window
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
         BoardGrid.Children.Clear();
+        SetBoardGridDefinitions();
         
         cells = new Cell[rows, cols];
 
-        for (int r = 0; r < rows; r++)
+        for (int r = 0; r < Rows; r++)
         {
-            BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star));
-        }
-        for (int c = 0; c < cols; c++)
-        {
-            BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star));
-        }
-
-        for (int r = 0; r < rows; r++)
-        {
-            for (int c = 0; c < cols; c++)
+            for (int c = 0; c < Columns; c++)
             {
                 cells[r, c] = new Cell();
                 
@@ -118,6 +110,12 @@ public partial class MainWindow : Window
     //    if (sender is Button btn)
     //        btn.Content = "•";
     //}
+
+    private void SetBoardGridDefinitions()
+    {
+        for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
+        for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
+    }
     
     private void Settings_Click(object? sender, RoutedEventArgs e)
     {
