@@ -98,8 +98,7 @@ public partial class MainWindow : Window
         var cell = cells[row, col];
         if (cell == null) { return; }
         
-        
-        //startCell.
+        Console.WriteLine("Selected cell: " + row + "R " + col + "C");
     }
 
     private void RevealCell(int atRow, int atCol)
