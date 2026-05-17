@@ -96,10 +96,32 @@ public partial class MainWindow : Window
     
     private void FindNeighbors(int row, int col)
     {
-        var cell = cells[row, col];
-        if (cell == null) { return; }
-        
-        Console.WriteLine("Selected cell: " + row + "R " + col + "C");
+        if (cells == null) return;
+
+        Console.WriteLine($"Selected cell: {row}R {col}C");
+
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
+        {
+            for (int colOffset = -1; colOffset <= 1; colOffset++)
+            {
+                if (rowOffset == 0 && colOffset == 0)
+                    continue;
+
+                int neighborRow = row + rowOffset;
+                int neighborCol = col + colOffset;
+                
+                if (neighborRow < 0 || neighborRow >= Rows ||
+                    neighborCol < 0 || neighborCol >= Columns)
+                {
+                    continue;
+                }
+
+                var neighbor = cells[neighborRow, neighborCol];
+
+                Console.WriteLine(
+                    $"Neighbor at {neighborRow}R {neighborCol}C");
+            }
+        }
     }
 
     private void RevealCell(int atRow, int atCol)
