@@ -81,7 +81,6 @@ public partial class MainWindow : Window
                     
                 button.Tag = (r, c);
                 button.Name =  $"{r}_{c}";
-                //button.Click += Cell_Click;
                 button.Click += Cell_Click;
                 button.ContextRequested += Cell_RightClick;
                 
