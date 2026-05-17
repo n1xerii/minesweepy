@@ -2,6 +2,7 @@ using System;
 using System.Data.Common;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 
 namespace minesweepy;
 
@@ -76,6 +77,9 @@ public partial class MainWindow : Window
                 
                 var button = new Button();
                 buttons[r, c] = button;
+                    
+                button.Tag = (r, c);
+                button.Click += Cell_Click;
                 
                 Grid.SetRow(button, r);
                 Grid.SetColumn(button, c);
@@ -89,7 +93,7 @@ public partial class MainWindow : Window
         
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
-
+    
     private void FindNeighbors(int row, int col)
     {
         var cell = cells[row, col];
@@ -103,7 +107,6 @@ public partial class MainWindow : Window
         if (cells == null) { return; }
         cells[atRow, atCol].revealed = true;
     }
-
     private void FlagCell(Cell cell, int atRow, int atCol)
     {
         if (cells == null) { return; }
@@ -122,6 +125,17 @@ public partial class MainWindow : Window
         for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
     }
     
+    private void Cell_Click(object? sender, RoutedEventArgs e)
+    {
+        if (sender is Button btn)
+        {
+            btn.Background = Brushes.CornflowerBlue;
+        }
+    }
+    
+    
+    
+    // SETTINGS
     private void Settings_Click(object? sender, RoutedEventArgs e)
     {
         var window = new SettingsWindow();
