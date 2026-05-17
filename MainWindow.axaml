@@ -22,7 +22,6 @@
         </Menu>
         
         <Grid x:Name="BoardGrid"
-              ShowGridLines="True"
               ColumnSpacing="1.5">
         </Grid>
     </DockPanel>
