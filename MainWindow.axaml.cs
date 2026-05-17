@@ -1,6 +1,7 @@
 using System;
 using System.Data.Common;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Media;
 
@@ -129,15 +130,32 @@ public partial class MainWindow : Window
         }
     }
 
-    private void RevealCell(int atRow, int atCol)
+    private void RevealCell(Button cellBtn)
     {
         if (cells == null) { return; }
-        cells[atRow, atCol].revealed = true;
+
+        var (r, c) = ((int, int))cellBtn.Tag;
+        Cell thisCell = cells[r, c];
+
+        thisCell.revealed = true;
+        if (thisCell.isBomb)
+        {
+            cellBtn.Background = Brushes.Red;
+            //GameOver();
+            return;
+        }
     }
-    private void FlagCell(Cell cell, int atRow, int atCol)
+    private void FlagCell(Button cellBtn)
     {
         if (cells == null) { return; }
-        cells[atRow, atCol].flagged = true;
+        
+        var (r, c) = ((int, int))cellBtn.Tag;
+        Cell thisCell = cells[r, c];
+        
+        thisCell.flagged = !thisCell.flagged;
+
+        if (thisCell.flagged) { cellBtn.Background = Brushes.Orange; }
+        else { cellBtn.Background = Brushes.DimGray; }
     }
 
     private void SetBoardGridDefinitions()
