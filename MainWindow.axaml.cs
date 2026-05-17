@@ -134,12 +134,6 @@ public partial class MainWindow : Window
         if (cells == null) { return; }
         cells[atRow, atCol].flagged = true;
     }
-    
-    //private void CellClicked(object? sender, RoutedEventArgs e)
-    //{
-    //    if (sender is Button btn)
-    //        btn.Content = "•";
-    //}
 
     private void SetBoardGridDefinitions()
     {
