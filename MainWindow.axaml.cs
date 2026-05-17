@@ -120,24 +120,21 @@ public partial class MainWindow : Window
                     neighborCol < 0 || neighborCol >= Columns) continue;
 
                 var neighbor = cells[neighborRow, neighborCol];
-
-                //var neighborBtn = buttons[neighborRow, neighborCol];
-                
                 cells[row, col].neighbors.Add(neighbor);
                 
-                Console.WriteLine(
-                    $"Neighbor at {neighborRow}R {neighborCol}C");
+                Console.WriteLine($"Neighbor at {neighborRow}R {neighborCol}C");
                 
                 RevealCell(neighbor.myRow, neighbor.myCol);
-
-                //var (nR, nC) = ((int, int))neighborBtn.Tag;
                 
                 foreach (var nb in neighbor.neighbors)
                 {
                     FindNeighbors(nb.myRow, nb.myCol);
+                    RevealCell(nb.myRow, nb.myCol);
                 }
             }
         }
+
+        Console.WriteLine("* Finished Calculation *");
     }
 
     private void RevealCell(int row, int col)
