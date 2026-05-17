@@ -143,6 +143,7 @@ public partial class MainWindow : Window
     private void RevealCell(int row, int col)
     {
         if (cells == null) { return; }
+        if (cells[row, col].revealed) { return; }
 
         //var (r, c) = ((int, int))cellBtn.Tag;
         Cell thisCell = cells[row, col];
@@ -182,6 +183,7 @@ public partial class MainWindow : Window
         Console.WriteLine("Left click");
         
         var (r, c) = ((int, int))button.Tag;
+        if (cells[r, c].revealed) { return; }
         
         Cell thisCell = cells[r, c];
 
