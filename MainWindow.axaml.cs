@@ -74,6 +74,8 @@ public partial class MainWindow : Window
             for (int c = 0; c < Columns; c++)
             {
                 cells[r, c] = new Cell();
+                cells[r, c].myRow = r;
+                cells[r, c].myCol = c;
                 
                 var button = new Button();
                 buttons[r, c] = button;
@@ -97,7 +99,7 @@ public partial class MainWindow : Window
         
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
-    
+
     private void FindNeighbors(int row, int col)
     {
         if (cells == null) return;
@@ -108,34 +110,43 @@ public partial class MainWindow : Window
             for (int colOffset = -1; colOffset <= 1; colOffset++)
             {
                 if (cells[row, col].isBomb) continue;
-                
+
                 if (rowOffset == 0 && colOffset == 0) continue;
 
                 int neighborRow = row + rowOffset;
                 int neighborCol = col + colOffset;
-                
+
                 if (neighborRow < 0 || neighborRow >= Rows ||
                     neighborCol < 0 || neighborCol >= Columns) continue;
 
                 var neighbor = cells[neighborRow, neighborCol];
 
+                //var neighborBtn = buttons[neighborRow, neighborCol];
+                
                 cells[row, col].neighbors.Add(neighbor);
                 
-                var neighborBtn = buttons[neighborRow, neighborCol];
-                RevealCell(neighborBtn);
-
                 Console.WriteLine(
                     $"Neighbor at {neighborRow}R {neighborCol}C");
+                
+                RevealCell(neighbor.myRow, neighbor.myCol);
+
+                //var (nR, nC) = ((int, int))neighborBtn.Tag;
+                
+                foreach (var nb in neighbor.neighbors)
+                {
+                    FindNeighbors(nb.myRow, nb.myCol);
+                }
             }
         }
     }
 
-    private void RevealCell(Button cellBtn)
+    private void RevealCell(int row, int col)
     {
         if (cells == null) { return; }
 
-        var (r, c) = ((int, int))cellBtn.Tag;
-        Cell thisCell = cells[r, c];
+        //var (r, c) = ((int, int))cellBtn.Tag;
+        Cell thisCell = cells[row, col];
+        Button cellBtn = buttons[row, col];
 
         thisCell.revealed = true;
         if (thisCell.isBomb)
@@ -149,12 +160,13 @@ public partial class MainWindow : Window
             cellBtn.Background = Brushes.LightGreen;
         }
     }
-    private void FlagCell(Button cellBtn)
+    private void FlagCell(int row, int col)
     {
         if (cells == null) { return; }
         
-        var (r, c) = ((int, int))cellBtn.Tag;
-        Cell thisCell = cells[r, c];
+        //var (r, c) = ((int, int))cellBtn.Tag;
+        Cell thisCell = cells[row, col];
+        Button cellBtn = buttons[row, col];
         
         thisCell.flagged = !thisCell.flagged;
 
@@ -170,19 +182,23 @@ public partial class MainWindow : Window
         Console.WriteLine("Left click");
         
         var (r, c) = ((int, int))button.Tag;
+        
+        Cell thisCell = cells[r, c];
 
         button.Background = Brushes.CornflowerBlue;
-        RevealCell(button);
-        FindNeighbors(r, c);
+        RevealCell(thisCell.myRow, thisCell.myCol);
+        FindNeighbors(thisCell.myRow, thisCell.myCol);
     }
     private void Cell_RightClick(object? sender, RoutedEventArgs e)
     {
         if (sender is not Button button)
             return;
         
+        var (r, c) = ((int, int))button.Tag;
+        
         Console.WriteLine("Right click");
         
-        FlagCell(button);
+        FlagCell(r, c);
     }
     
     
