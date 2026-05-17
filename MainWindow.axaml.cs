@@ -80,7 +80,9 @@ public partial class MainWindow : Window
                     
                 button.Tag = (r, c);
                 button.Name =  $"{r}_{c}";
+                //button.Click += Cell_Click;
                 button.Click += Cell_Click;
+                button.ContextRequested += Cell_RightClick;
                 
                 Grid.SetRow(button, r);
                 Grid.SetColumn(button, c);
@@ -146,10 +148,25 @@ public partial class MainWindow : Window
     
     private void Cell_Click(object? sender, RoutedEventArgs e)
     {
-        if (sender is Button btn)
-        {
-            btn.Background = Brushes.CornflowerBlue;
-        }
+        if (sender is not Button button)
+            return;
+        
+        Console.WriteLine("Left click");
+        
+        var (r, c) = ((int, int))button.Tag;
+
+        button.Background = Brushes.CornflowerBlue;
+        RevealCell(button);
+    }
+
+    private void Cell_RightClick(object? sender, RoutedEventArgs e)
+    {
+        if (sender is not Button button)
+            return;
+        
+        Console.WriteLine("Right click");
+        
+        FlagCell(button);
     }
     
     
