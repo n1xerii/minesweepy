@@ -79,6 +79,7 @@ public partial class MainWindow : Window
                 buttons[r, c] = button;
                     
                 button.Tag = (r, c);
+                button.Name =  $"{r}_{c}";
                 button.Click += Cell_Click;
                 
                 Grid.SetRow(button, r);
@@ -86,6 +87,8 @@ public partial class MainWindow : Window
                 
                 button.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch;
                 button.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch;
+                
+                button.Background = Brushes.DimGray;
                 
                 BoardGrid.Children.Add(button);
             }
