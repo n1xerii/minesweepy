@@ -157,12 +157,6 @@ public partial class MainWindow : Window
         if (thisCell.flagged) { cellBtn.Background = Brushes.Orange; }
         else { cellBtn.Background = Brushes.DimGray; }
     }
-
-    private void SetBoardGridDefinitions()
-    {
-        for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
-        for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
-    }
     
     private void Cell_Click(object? sender, RoutedEventArgs e)
     {
@@ -176,7 +170,6 @@ public partial class MainWindow : Window
         button.Background = Brushes.CornflowerBlue;
         RevealCell(button);
     }
-
     private void Cell_RightClick(object? sender, RoutedEventArgs e)
     {
         if (sender is not Button button)
@@ -188,6 +181,11 @@ public partial class MainWindow : Window
     }
     
     
+    private void SetBoardGridDefinitions()
+    {
+        for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
+        for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
+    }
     
     // SETTINGS
     private void Settings_Click(object? sender, RoutedEventArgs e)
