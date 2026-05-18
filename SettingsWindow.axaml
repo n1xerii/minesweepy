@@ -6,15 +6,16 @@
         Title="Settings">
 
     <StackPanel Background="DimGray">
-        <TextBox PlaceholderText="Row amount." Background="LightSlateGray"
+        <TextBox x:Name="RowBox" PlaceholderText="Row amount." Background="LightSlateGray"
                  HorizontalAlignment="Center"/>
-        <TextBox PlaceholderText="Column amount." Background="LightSlateGray"
+        <TextBox x:Name="ColumnBox" PlaceholderText="Column amount." Background="LightSlateGray"
                  HorizontalAlignment="Center"/>
-        <TextBox PlaceholderText="Mine amount." Background="LightSlateGray"
+        <TextBox x:Name="MineBox" PlaceholderText="Mine amount." Background="LightSlateGray"
                  HorizontalAlignment="Center"/>
         <Button Content="* Start New Game *" Background="LightSlateGray"
                 HorizontalAlignment="Center"
-                FontSize="20"/>
+                FontSize="20"
+                Click="NewGame_Click"/>
     </StackPanel>
 
 </Window>
