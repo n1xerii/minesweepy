@@ -58,7 +58,7 @@ public partial class MainWindow : Window
     {
         Rows = amountOfRows;
         Columns = amountOfCols;
-        mineCount = amountOfMines;
+        MineCount = amountOfMines;
     }
     public void MakeBoard(int givenRows, int givenCols)
     {
