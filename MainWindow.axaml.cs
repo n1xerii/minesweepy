@@ -55,8 +55,12 @@ public partial class MainWindow : Window
     }
 
     // GAMEBOARD
-    private void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
+    public void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
     {
+        Rows = 0;
+        Columns = 0;
+        MineCount = 0;
+        
         Rows = amountOfRows;
         Columns = amountOfCols;
         MineCount = amountOfMines;
@@ -168,7 +172,7 @@ public partial class MainWindow : Window
     }
 
     // MINES
-    private void MakeMines(int bRows, int bCols, int amountOfBombs)
+    public void MakeMines(int bRows, int bCols, int amountOfBombs)
     {
         mines = new bool[bRows, bCols];
         Random rng = new Random();

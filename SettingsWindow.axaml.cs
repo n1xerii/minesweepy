@@ -7,8 +7,35 @@ namespace minesweepy;
 
 public partial class SettingsWindow : Window
 {
+    MainWindow main = new MainWindow();
+    
     public SettingsWindow()
     {
         InitializeComponent();
+    }
+
+    private void NewGame_Click(object sender, RoutedEventArgs e)
+    {
+        TextBox rowBox = RowBox;
+        TextBox columnBox = ColumnBox;
+        TextBox mineBox = MineBox;
+
+        if (rowBox.Text == "" ||
+            columnBox.Text == "" ||
+            mineBox.Text == "" ||
+            rowBox.Text == null ||
+            columnBox.Text == null ||
+            mineBox.Text == null)
+        {
+            return;
+        }
+        
+        main.Rows = int.Parse(rowBox.Text);
+        main.Columns = int.Parse(columnBox.Text);
+        main.MineCount = int.Parse(mineBox.Text);
+        
+        main.SetGameData(main.Rows, main.Columns, main.MineCount);
+        main.MakeBoard();
+        main.MakeMines(main.Rows, main.Columns,  main.MineCount);
     }
 }
