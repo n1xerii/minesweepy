@@ -131,6 +131,7 @@ public partial class MainWindow : Window
         if (cell.isBomb)
         {
             button.Background = Brushes.Red;
+            // GameOver();
             return;
         }
 
