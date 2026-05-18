@@ -177,6 +177,7 @@ public partial class MainWindow : Window
         return count;
     }
     
+    // FLAGGING
     private void FlagCell(int row, int col)
     {
         if (cells == null) { return; }
@@ -190,6 +191,7 @@ public partial class MainWindow : Window
         else { cellBtn.Background = Brushes.DimGray; }
     }
     
+    // CLICKS
     private void Cell_Click(object? sender, RoutedEventArgs e)
     {
         if (sender is not Button button)
@@ -213,7 +215,7 @@ public partial class MainWindow : Window
         FlagCell(r, c);
     }
     
-    
+    // BOARD UI
     private void SetBoardGridDefinitions()
     {
         for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
