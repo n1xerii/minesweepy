@@ -5,8 +5,8 @@
         mc:Ignorable="d"
         x:Class="minesweepy.MainWindow"
         Title="minesweepy"
-        MinHeight="200"
-        MaxHeight="200"
+        MinWidth="350"
+        MinHeight="350"
         Width="600"
         Height="600">
 
