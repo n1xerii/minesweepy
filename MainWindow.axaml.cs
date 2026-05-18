@@ -142,6 +142,17 @@ public partial class MainWindow : Window
         if (bombCount > 0)
         {
             button.Content = bombCount.ToString();
+            
+            button.FontSize = 20.0;
+            // FONT(responsive)
+            button.LayoutUpdated += (_, __) =>
+            {
+                if (bombCount <= 0) return;
+                var w = button.Bounds.Width;
+                var h = button.Bounds.Height;
+                if (w > 0 && h > 0) button.FontSize = Math.Min(w, h) * 0.6;
+            };
+
             return;
         }
         
