@@ -42,7 +42,7 @@ public partial class MainWindow : Window
         get { return mineCount; }
         set 
         {
-            if (value <= 0) { mineCount = 1; }
+            if (value <= 0) { mineCount = 10; }
             else { mineCount = value; }
         }
     }
@@ -52,7 +52,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
         
-        SetGameData(10, 10, 1);
+        SetGameData(0, 0, 0);
         MakeBoard(rows, columns);
         MakeMines(rows, columns,  mineCount);
     }
