@@ -53,7 +53,7 @@ public partial class MainWindow : Window
         InitializeComponent();
         
         SetGameData(0, 0, 0);
-        MakeBoard(rows, columns);
+        MakeBoard();
         MakeMines(rows, columns,  mineCount);
     }
 
@@ -64,7 +64,7 @@ public partial class MainWindow : Window
         Columns = amountOfCols;
         MineCount = amountOfMines;
     }
-    public void MakeBoard(int givenRows, int givenCols)
+    public void MakeBoard()
     {
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
