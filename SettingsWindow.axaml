@@ -5,8 +5,16 @@
         Height="450"
         Title="Settings">
 
-    <StackPanel>
-        <TextBlock Text="Settings here."/>
+    <StackPanel Background="DimGray">
+        <TextBox PlaceholderText="Row amount." Background="LightSlateGray"
+                 HorizontalAlignment="Center"/>
+        <TextBox PlaceholderText="Column amount." Background="LightSlateGray"
+                 HorizontalAlignment="Center"/>
+        <TextBox PlaceholderText="Mine amount." Background="LightSlateGray"
+                 HorizontalAlignment="Center"/>
+        <Button Content="* Start New Game *" Background="LightSlateGray"
+                HorizontalAlignment="Center"
+                FontSize="20"/>
     </StackPanel>
 
 </Window>
