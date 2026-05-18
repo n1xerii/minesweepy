@@ -95,6 +95,8 @@ public partial class MainWindow : Window
                 
                 button.HorizontalAlignment = Avalonia.Layout.HorizontalAlignment.Stretch;
                 button.VerticalAlignment = Avalonia.Layout.VerticalAlignment.Stretch;
+                button.HorizontalContentAlignment = Avalonia.Layout.HorizontalAlignment.Center;
+                button.VerticalContentAlignment = Avalonia.Layout.VerticalAlignment.Center;
                 
                 button.Background = Brushes.DimGray;
                 
