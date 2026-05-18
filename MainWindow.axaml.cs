@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Data.Common;
 using Avalonia.Controls;
 using Avalonia.Input;
@@ -100,69 +101,86 @@ public partial class MainWindow : Window
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
 
-    private void FindNeighbors(int row, int col)
+    private void RevealRecursive(int row, int col)
     {
         if (cells == null) return;
-        Console.WriteLine($"Selected cell: {row}R {col}C");
+        
+        // BOUNDS
+        if (row < 0 || row >= Rows ||
+            col < 0 || col >= Columns)
+            return;
+
+        Cell cell = cells[row, col];
+
+        if (cell.revealed) return;
+        if (cell.flagged)
+        {
+            Console.WriteLine("**Unflag before clicking.");
+            return;
+        }
+
+        cell.revealed = true;
+
+        Button button = buttons[row, col];
+        
+        if (cell.isBomb)
+        {
+            button.Background = Brushes.Red;
+            return;
+        }
+
+        button.Background = Brushes.LightGreen;
+        
+        int bombCount = CountAdjacentBombs(row, col);
+        
+        if (bombCount > 0)
+        {
+            button.Content = bombCount.ToString();
+            return;
+        }
+        
+        for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
+        {
+            for (int colOffset = -1; colOffset <= 1; colOffset++)
+            {
+                if (rowOffset == 0 && colOffset == 0)
+                    continue;
+
+                RevealRecursive(row + rowOffset, col + colOffset);
+            }
+        }
+    }
+
+    private int CountAdjacentBombs(int row, int col)
+    {
+        int count = 0;
 
         for (int rowOffset = -1; rowOffset <= 1; rowOffset++)
         {
             for (int colOffset = -1; colOffset <= 1; colOffset++)
             {
-                if (cells[row, col].isBomb) continue;
-
-                if (rowOffset == 0 && colOffset == 0) continue;
+                if (rowOffset == 0 && colOffset == 0)
+                    continue;
 
                 int neighborRow = row + rowOffset;
                 int neighborCol = col + colOffset;
 
                 if (neighborRow < 0 || neighborRow >= Rows ||
-                    neighborCol < 0 || neighborCol >= Columns) continue;
+                    neighborCol < 0 || neighborCol >= Columns)
+                    continue;
 
-                var neighbor = cells[neighborRow, neighborCol];
-                cells[row, col].neighbors.Add(neighbor);
-                
-                Console.WriteLine($"Neighbor at {neighborRow}R {neighborCol}C");
-                
-                RevealCell(neighbor.myRow, neighbor.myCol);
-                
-                foreach (var nb in neighbor.neighbors)
-                {
-                    FindNeighbors(nb.myRow, nb.myCol);
-                    RevealCell(nb.myRow, nb.myCol);
-                }
+                if (cells[neighborRow, neighborCol].isBomb)
+                    count++;
             }
         }
 
-        Console.WriteLine("* Finished Calculation *");
+        return count;
     }
-
-    private void RevealCell(int row, int col)
-    {
-        if (cells == null) { return; }
-        if (cells[row, col].revealed) { return; }
-
-        //var (r, c) = ((int, int))cellBtn.Tag;
-        Cell thisCell = cells[row, col];
-        Button cellBtn = buttons[row, col];
-
-        thisCell.revealed = true;
-        if (thisCell.isBomb)
-        {
-            cellBtn.Background = Brushes.Red;
-            //GameOver();
-            return;
-        }
-        else
-        {
-            cellBtn.Background = Brushes.LightGreen;
-        }
-    }
+    
     private void FlagCell(int row, int col)
     {
         if (cells == null) { return; }
         
-        //var (r, c) = ((int, int))cellBtn.Tag;
         Cell thisCell = cells[row, col];
         Button cellBtn = buttons[row, col];
         
@@ -180,13 +198,8 @@ public partial class MainWindow : Window
         Console.WriteLine("Left click");
         
         var (r, c) = ((int, int))button.Tag;
-        if (cells[r, c].revealed) { return; }
-        
-        Cell thisCell = cells[r, c];
 
-        button.Background = Brushes.CornflowerBlue;
-        RevealCell(thisCell.myRow, thisCell.myCol);
-        FindNeighbors(thisCell.myRow, thisCell.myCol);
+        RevealRecursive(r, c);
     }
     private void Cell_RightClick(object? sender, RoutedEventArgs e)
     {
