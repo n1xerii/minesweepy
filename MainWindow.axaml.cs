@@ -101,7 +101,7 @@ public partial class MainWindow : Window
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
 
-    private void RevealRecursive(int row, int col)
+    private void RecursiveCellReveal(int row, int col)
     {
         if (cells == null) return;
         
@@ -131,7 +131,7 @@ public partial class MainWindow : Window
 
         button.Background = Brushes.LightGreen;
         
-        int bombCount = CountAdjacentBombs(row, col);
+        int bombCount = CountAdjacentMines(row, col);
         
         if (bombCount > 0)
         {
@@ -146,7 +146,7 @@ public partial class MainWindow : Window
                 if (rowOffset == 0 && colOffset == 0)
                     continue;
 
-                RevealRecursive(row + rowOffset, col + colOffset);
+                RecursiveCellReveal(row + rowOffset, col + colOffset);
             }
         }
     }
@@ -199,7 +199,7 @@ public partial class MainWindow : Window
         
         var (r, c) = ((int, int))button.Tag;
 
-        RevealRecursive(r, c);
+        RecursiveCellReveal(r, c);
     }
     private void Cell_RightClick(object? sender, RoutedEventArgs e)
     {
