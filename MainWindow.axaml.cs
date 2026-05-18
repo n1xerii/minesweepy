@@ -17,6 +17,8 @@ public partial class MainWindow : Window
     private int columns;
     private int mineCount;
     
+    public bool[,] mines { get; private set; }
+    
     public int Rows
     {
         get { return rows; }
@@ -52,6 +54,7 @@ public partial class MainWindow : Window
         
         SetGameData(10, 10, 1);
         MakeBoard(rows, columns);
+        MakeMines(rows, columns,  mineCount);
     }
 
     private void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
@@ -151,7 +154,26 @@ public partial class MainWindow : Window
         }
     }
 
-    private int CountAdjacentBombs(int row, int col)
+    // MINES
+    private void MakeMines(int bRows, int bCols, int amountOfBombs)
+    {
+        mines = new bool[bRows, bCols];
+        Random rng = new Random();
+        
+        int placed = 0;
+        while (placed < amountOfBombs)
+        {
+            int row = rng.Next(Rows);
+            int col = rng.Next(Columns);
+
+            if (mines[row, col]) continue;
+
+            mines[row, col] = true;
+            cells[row, col].isBomb = true;
+            placed++;
+        }
+    }
+    private int CountAdjacentMines(int row, int col)
     {
         int count = 0;
 
