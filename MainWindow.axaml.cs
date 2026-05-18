@@ -135,7 +135,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        button.Background = Brushes.LightGreen;
+        button.Background = Brushes.Green;
         
         int bombCount = CountAdjacentMines(row, col);
 
