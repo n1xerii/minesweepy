@@ -17,7 +17,7 @@ public partial class MainWindow : Window
     private int columns;
     private int mineCount;
     
-    public bool[,] mines { get; private set; }
+    private bool[,]? mines { get; set; }
     
     public int Rows
     {
