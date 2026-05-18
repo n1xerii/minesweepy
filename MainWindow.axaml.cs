@@ -57,6 +57,7 @@ public partial class MainWindow : Window
         MakeMines(rows, columns,  mineCount);
     }
 
+    // GAMEBOARD
     private void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
     {
         Rows = amountOfRows;
@@ -104,6 +105,7 @@ public partial class MainWindow : Window
         Console.WriteLine("Amount of cells: " + cells.Length);
     }
 
+    // CELLS
     private void RecursiveCellReveal(int row, int col)
     {
         if (cells == null) return;
@@ -135,7 +137,7 @@ public partial class MainWindow : Window
         button.Background = Brushes.LightGreen;
         
         int bombCount = CountAdjacentMines(row, col);
-        
+
         if (bombCount > 0)
         {
             button.Content = bombCount.ToString();
