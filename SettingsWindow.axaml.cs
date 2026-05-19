@@ -23,12 +23,8 @@ public partial class SettingsWindow : Window
         TextBox columnBox = ColumnBox;
         TextBox mineBox = MineBox;
 
-        if (rowBox.Text == "" ||
-            columnBox.Text == "" ||
-            mineBox.Text == "" ||
-            rowBox.Text == null ||
-            columnBox.Text == null ||
-            mineBox.Text == null)
+        if (string.IsNullOrEmpty(rowBox.Text) || 
+            string.IsNullOrEmpty(columnBox.Text))
         {
             return;
         }
