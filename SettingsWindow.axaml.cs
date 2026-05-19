@@ -56,6 +56,6 @@ public partial class SettingsWindow : Window
         
         main.SetGameData(main.Rows, main.Columns, main.MineCount);
         main.MakeBoard();
-        main.MakeMines(main.Rows, main.Columns,  main.MineCount);
+        //main.MakeMines(main.Rows, main.Columns,  main.MineCount);
     }
 }

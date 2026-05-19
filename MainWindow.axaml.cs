@@ -15,6 +15,7 @@ public partial class MainWindow : Window
     private int mineCount;
     
     private bool[,]? mines { get; set; }
+    private bool firstClick;
     
     public int Rows
     {
@@ -51,7 +52,7 @@ public partial class MainWindow : Window
         
         SetGameData(0, 0, 0);
         MakeBoard();
-        MakeMines(rows, columns,  mineCount);
+        //MakeMines(rows, columns,  mineCount);
     }
 
     // GAMEBOARD
@@ -64,6 +65,8 @@ public partial class MainWindow : Window
         Rows = amountOfRows;
         Columns = amountOfCols;
         MineCount = amountOfMines;
+
+        firstClick = true;
     }
     public void MakeBoard()
     {
@@ -237,6 +240,12 @@ public partial class MainWindow : Window
             return;
         
         Console.WriteLine("Left click");
+
+        if (firstClick)
+        {
+            MakeMines(rows, columns,  mineCount);
+            firstClick = false;
+        }
         
         var (r, c) = ((int, int))button.Tag;
 
