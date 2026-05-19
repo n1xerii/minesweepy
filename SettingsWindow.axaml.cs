@@ -33,9 +33,20 @@ public partial class SettingsWindow : Window
             return;
         }
         
-        main.Rows = int.Parse(rowBox.Text);
-        main.Columns = int.Parse(columnBox.Text);
-        main.MineCount = int.Parse(mineBox.Text);
+        int rowsNum = int.Parse(rowBox.Text);
+        int colsNum = int.Parse(columnBox.Text);
+
+        main.Rows = rowsNum;
+        main.Columns = colsNum;
+        if (string.IsNullOrEmpty(mineBox.Text))
+        {
+            main.MineCount = Convert.ToInt32((rowsNum * colsNum) * 0.15);
+        }
+        else
+        {
+            main.MineCount = int.Parse(mineBox.Text);   
+        }
+
         if (main.MineCount > main.Rows * main.Columns)
         {
             Console.WriteLine("**Too many mines!");
