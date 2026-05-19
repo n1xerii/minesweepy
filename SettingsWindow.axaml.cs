@@ -1,3 +1,4 @@
+using System;
 using System.Dynamic;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -7,11 +8,13 @@ namespace minesweepy;
 
 public partial class SettingsWindow : Window
 {
-    MainWindow main = new MainWindow();
+    private MainWindow main;
     
-    public SettingsWindow()
+    public SettingsWindow(MainWindow mainWindow)
     {
         InitializeComponent();
+        
+        main = mainWindow;
     }
 
     private void NewGame_Click(object sender, RoutedEventArgs e)
