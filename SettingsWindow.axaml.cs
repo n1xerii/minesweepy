@@ -36,6 +36,16 @@ public partial class SettingsWindow : Window
         main.Rows = int.Parse(rowBox.Text);
         main.Columns = int.Parse(columnBox.Text);
         main.MineCount = int.Parse(mineBox.Text);
+        if (main.MineCount > main.Rows * main.Columns)
+        {
+            Console.WriteLine("**Too many mines!");
+            return;
+        }
+        if (main.Rows > 50 || main.Columns > 50)
+        {
+            Console.WriteLine("**Too many cells!");
+            return;
+        }
         
         main.SetGameData(main.Rows, main.Columns, main.MineCount);
         main.MakeBoard();
