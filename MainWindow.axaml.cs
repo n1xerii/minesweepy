@@ -54,6 +54,9 @@ public partial class MainWindow : Window
         
         SetGameData(0, 0, 0);
         MakeBoard();
+        
+        Console.WriteLine("Cells: " + cells.Length);
+        Console.WriteLine("Mines: " + finalMines);
     }
 
     // GAMEBOARD
@@ -111,8 +114,6 @@ public partial class MainWindow : Window
                 BoardGrid.Children.Add(button);
             }
         }
-        
-        Console.WriteLine("Amount of cells: " + cells.Length);
     }
 
     // CELLS
