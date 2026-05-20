@@ -22,7 +22,7 @@ public partial class SettingsWindow : Window
         TextBox rowBox = RowBox;
         TextBox columnBox = ColumnBox;
         TextBox mineBox = MineBox;
-
+        
         if (string.IsNullOrEmpty(rowBox.Text) || 
             string.IsNullOrEmpty(columnBox.Text))
         {

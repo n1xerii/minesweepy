@@ -54,8 +54,15 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        NewGame(10,10, defaultMinePercentage);
+    }
+    
+    public void NewGame(int newRows, int newColumns, double minePercentage)
+    {
+        double newMines = newRows * newColumns * minePercentage;
+        int finalMines = Convert.ToInt32(newMines);
         
-        SetGameData(0, 0, 0);
+        SetGameData(newRows, newColumns, finalMines);
         MakeBoard();
         
         Console.WriteLine("Cells: " + cells.Length);
