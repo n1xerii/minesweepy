@@ -53,7 +53,7 @@ public partial class SettingsWindow : Window
             Console.WriteLine("**Too many cells!");
             return;
         }
-        
+
         main.SetGameData(main.Rows, main.Columns, main.MineCount);
         main.MakeBoard();
     }

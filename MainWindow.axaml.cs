@@ -61,10 +61,14 @@ public partial class MainWindow : Window
         Columns = 0;
         MineCount = 0;
         
+        cells = null;
+        buttons = null;
+        mines = null;
+        
         Rows = amountOfRows;
         Columns = amountOfCols;
         MineCount = amountOfMines;
-
+        
         firstClick = true;
     }
     public void MakeBoard()
@@ -174,9 +178,9 @@ public partial class MainWindow : Window
     }
 
     // MINES
-    public void MakeMines(int bRows, int bCols, int amountOfBombs)
+    public void MakeMines(int mRows, int mCols, int amountOfBombs, int clickedRow, int clickedColumn)
     {
-        mines = new bool[bRows, bCols];
+        mines = new bool[mRows, mCols];
         Random rng = new Random();
         
         int placed = 0;
@@ -185,6 +189,10 @@ public partial class MainWindow : Window
             int row = rng.Next(Rows);
             int col = rng.Next(Columns);
 
+            // Prevent making a mine on clicked cell
+            if (cells[row, col] == cells[clickedRow, clickedColumn]) continue;
+            
+            // Skip already created mines
             if (mines[row, col]) continue;
 
             mines[row, col] = true;
@@ -239,14 +247,14 @@ public partial class MainWindow : Window
             return;
         
         Console.WriteLine("Left click");
-
-        if (firstClick)
-        {
-            MakeMines(rows, columns,  mineCount);
-            firstClick = false;
-        }
         
         var (r, c) = ((int, int))button.Tag;
+        
+        if (firstClick) // Generate bombs after first click
+        {
+            MakeMines(Rows, Columns,  MineCount, r, c);
+            firstClick = false;
+        }
 
         RecursiveCellReveal(r, c);
     }
