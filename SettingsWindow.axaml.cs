@@ -57,5 +57,21 @@ public partial class SettingsWindow : Window
         main.NewGame(rowsNum, colsNum, customMinePercentage);
     }
 
+    
+    public void Easy_Click(object sender, RoutedEventArgs e)
+    {
+        main.NewGame(10, 10, main.defaultMinePercentage);
+    }
+    private void Medium_Click(object sender, RoutedEventArgs e)
+    {
+        main.NewGame(16, 16, main.mediumMinePercentage);
+    }
+    private void Hard_Click(object sender, RoutedEventArgs e)
+    {
+        main.NewGame(24, 24, main.hardMinePercentage);
+    }
+    private void Impossible_Click(object sender, RoutedEventArgs e)
+    {
+        main.NewGame(32, 32, main.impossibleMinePercentage);
     }
 }
