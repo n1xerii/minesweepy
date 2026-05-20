@@ -31,30 +31,31 @@ public partial class SettingsWindow : Window
         
         int rowsNum = int.Parse(rowBox.Text);
         int colsNum = int.Parse(columnBox.Text);
-
-        main.Rows = rowsNum;
-        main.Columns = colsNum;
-        if (string.IsNullOrEmpty(mineBox.Text))
-        {
-            main.MineCount = Convert.ToInt32((rowsNum * colsNum) * 0.15);
-        }
-        else
-        {
-            main.MineCount = int.Parse(mineBox.Text);   
-        }
-
-        if (main.MineCount > main.Rows * main.Columns)
-        {
-            Console.WriteLine("**Too many mines!");
-            return;
-        }
-        if (main.Rows > 50 || main.Columns > 50)
+        
+        if (rowsNum > 50 || colsNum > 50)
         {
             Console.WriteLine("**Too many cells!");
             return;
         }
+        
+        double customMinePercentage;
+        if (string.IsNullOrEmpty(mineBox.Text) || Convert.ToInt32(mineBox.Text) <= 0)
+        {
+            Console.WriteLine("**No mine percentage given, using default: " + main.defaultMinePercentage);
+            customMinePercentage = rowsNum * colsNum * main.defaultMinePercentage;
+        }
+        else if (Convert.ToInt32(mineBox.Text) >= rowsNum * colsNum)
+        {
+            Console.WriteLine("**Too many mines!");
+            return;
+        }
+        else
+        {
+            customMinePercentage = double.Parse(mineBox.Text); 
+        }
+        
+        main.NewGame(rowsNum, colsNum, customMinePercentage);
+    }
 
-        main.SetGameData(main.Rows, main.Columns, main.MineCount);
-        main.MakeBoard();
     }
 }
