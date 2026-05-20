@@ -52,7 +52,6 @@ public partial class MainWindow : Window
         
         SetGameData(0, 0, 0);
         MakeBoard();
-        //MakeMines(rows, columns,  mineCount);
     }
 
     // GAMEBOARD
