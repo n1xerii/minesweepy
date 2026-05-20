@@ -14,7 +14,7 @@
     <DockPanel>
         <Menu x:Name="TopMenu" DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New Game"/>
+                <MenuItem Header="New Game(unfunctional)"/>
                 <Separator/>
                 <MenuItem Header="Exit"/>
             </MenuItem>
