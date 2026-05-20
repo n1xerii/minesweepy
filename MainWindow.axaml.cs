@@ -10,6 +10,7 @@ public partial class MainWindow : Window
     private Cell[,]? cells;
     private Button[,]? buttons;
     
+    // DATA
     private int rows;
     private int columns;
     private int mineCount;
@@ -45,6 +46,7 @@ public partial class MainWindow : Window
         }
     }
     
+    // MINES
     
     public MainWindow()
     {
@@ -60,7 +62,6 @@ public partial class MainWindow : Window
         Rows = 0;
         Columns = 0;
         MineCount = 0;
-        
         cells = null;
         buttons = null;
         mines = null;
