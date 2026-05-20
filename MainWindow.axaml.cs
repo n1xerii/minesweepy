@@ -46,6 +46,10 @@ public partial class MainWindow : Window
     // MINES
     private bool[,]? mines { get; set; }
     private bool firstClick;
+    public readonly double defaultMinePercentage = 0.12;
+    public readonly double mediumMinePercentage = 0.18;
+    public readonly double hardMinePercentage = 0.26;
+    public readonly double impossibleMinePercentage = 0.40;
     
     public MainWindow()
     {
