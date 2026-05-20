@@ -15,9 +15,6 @@ public partial class MainWindow : Window
     private int columns;
     private int mineCount;
     
-    private bool[,]? mines { get; set; }
-    private bool firstClick;
-    
     public int Rows
     {
         get { return rows; }
@@ -47,6 +44,8 @@ public partial class MainWindow : Window
     }
     
     // MINES
+    private bool[,]? mines { get; set; }
+    private bool firstClick;
     
     public MainWindow()
     {
