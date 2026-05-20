@@ -7,13 +7,13 @@
         >
 
     <StackPanel Background="DimGray">
-        <TextBox x:Name="RowBox" PlaceholderText="Row amount" Background="LightSlateGray"
+        <TextBox x:Name="RowBox" PlaceholderText="Row amount" Background="SlateGray"
                  HorizontalAlignment="Center"/>
-        <TextBox x:Name="ColumnBox" PlaceholderText="Column amount" Background="LightSlateGray"
+        <TextBox x:Name="ColumnBox" PlaceholderText="Column amount" Background="SlateGray"
                  HorizontalAlignment="Center"/>
-        <TextBox x:Name="MineBox" PlaceholderText="Mine amount, defaults to 15% of cells" Background="LightSlateGray"
+        <TextBox x:Name="MineBox" PlaceholderText="Mine amount, defaults to 15% of cells" Background="SlateGray"
                  HorizontalAlignment="Center"/>
-        <Button Content="* Start New Game *" Background="LightSlateGray"
+        <Button Content="- Start New Game -" Background="SlateGray"
                 HorizontalAlignment="Center"
                 FontSize="20"
                 Click="NewGame_Click"/>
