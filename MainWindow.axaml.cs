@@ -113,7 +113,8 @@ public partial class MainWindow : Window
         BoardGrid.RowDefinitions.Clear();
         BoardGrid.ColumnDefinitions.Clear();
         BoardGrid.Children.Clear();
-        SetBoardGridDefinitions();
+        for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
+        for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
         
         cells = new Cell[Rows, Columns];
         buttons = new Button[Rows, Columns];
@@ -304,14 +305,7 @@ public partial class MainWindow : Window
         
         FlagCell(r, c);
     }
-    
-    // BOARD UI
-    private void SetBoardGridDefinitions()
-    {
-        for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
-        for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
-    }
-    
+
     // TOP MENU
     private void MenuEasy_Click(object? sender, RoutedEventArgs e)
     { StartDifficulty("Easy"); }
