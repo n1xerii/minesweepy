@@ -330,4 +330,5 @@ public partial class MainWindow : Window
     // EXIT
     private void Exit() { settings.Close(); Close(); }
     private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
+    private void TopLevel_OnClosed(object? sender, EventArgs e) { Exit(); }
 }

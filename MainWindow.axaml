@@ -9,6 +9,7 @@
         MinHeight="350"
         Width="600"
         Height="600"
+        Closed="TopLevel_OnClosed"
         >
 
     <DockPanel>
