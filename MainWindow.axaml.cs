@@ -68,6 +68,29 @@ public partial class MainWindow : Window
         Console.WriteLine("Cells: " + cells.Length);
         Console.WriteLine("Mines: " + finalMines);
     }
+    public void StartDifficulty(string diff)
+    {
+        string newDiff = diff.ToLower();
+        
+        switch (newDiff)
+        {
+            case "easy":
+                NewGame(10, 10, defaultMinePercentage);
+                break;
+            case "medium":
+                NewGame(16, 16, mediumMinePercentage);
+                break;
+            case "hard":
+                NewGame(24, 24, hardMinePercentage);
+                break;
+            case "impossible":
+                NewGame(32, 32, impossibleMinePercentage);
+                break;
+            default:
+                NewGame(10, 10, defaultMinePercentage);
+                break;
+        }
+    }
 
     // GAMEBOARD
     public void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
@@ -288,6 +311,16 @@ public partial class MainWindow : Window
         for (int r = 0; r < Rows; r++) { BoardGrid.RowDefinitions.Add(new RowDefinition(GridLength.Star)); }
         for (int c = 0; c < Columns; c++) { BoardGrid.ColumnDefinitions.Add(new ColumnDefinition(GridLength.Star)); }
     }
+    
+    // TOP MENU
+    private void MenuEasy_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Easy"); }
+    private void MenuMedium_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Medium"); }
+    private void MenuHard_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Hard"); }
+    private void MenuImpossible_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Impossible"); }
     
     // SETTINGS
     private void Settings_Click(object? sender, RoutedEventArgs e)
