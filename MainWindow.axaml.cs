@@ -7,6 +7,8 @@ namespace minesweepy;
 
 public partial class MainWindow : Window
 {
+    private SettingsWindow settings;
+    
     private Cell[,]? cells;
     private Button[,]? buttons;
     
@@ -54,6 +56,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        
+        settings = new SettingsWindow(this);
         NewGame(10,10, defaultMinePercentage);
     }
     
@@ -319,7 +323,11 @@ public partial class MainWindow : Window
     // SETTINGS
     private void Settings_Click(object? sender, RoutedEventArgs e)
     {
-        var window = new SettingsWindow(this);
-        window.Show();
+        //settings = new SettingsWindow(this);
+        settings.Show();
     }
+    
+    // EXIT
+    private void Exit() { settings.Close(); Close(); }
+    private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
 }

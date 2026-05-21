@@ -21,7 +21,7 @@
                     <MenuItem x:Name="MenuImpossibleDiff" Header="Impossible" Click="MenuImpossible_Click"></MenuItem>
                 </MenuItem>
                 <Separator/>
-                <MenuItem x:Name="MenuExit" Header="Exit"/>
+                <MenuItem x:Name="MenuExit" Header="Exit" Click="Exit_Click"/>
             </MenuItem>
 
             <MenuItem Header="Edit">
