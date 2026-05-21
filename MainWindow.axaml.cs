@@ -218,7 +218,7 @@ public partial class MainWindow : Window
     }
 
     // MINES
-    public void MakeMines(int mRows, int mCols, int amountOfBombs, int clickedRow, int clickedColumn)
+    private void MakeMines(int mRows, int mCols, int amountOfBombs, int clickedRow, int clickedColumn)
     {
         mines = new bool[mRows, mCols];
         Random rng = new Random();
