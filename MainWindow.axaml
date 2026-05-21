@@ -14,7 +14,12 @@
     <DockPanel>
         <Menu x:Name="TopMenu" DockPanel.Dock="Top">
             <MenuItem Header="File">
-                <MenuItem Header="New Game(unfunctional)"/>
+                <MenuItem Header="New Game(unfunctional)">
+                    <MenuItem x:Name="MenuEasyDiff" Header="Easy"></MenuItem>
+                    <MenuItem x:Name="MenuMediumDiff" Header="Medium"></MenuItem>
+                    <MenuItem x:Name="MenuHardDiff" Header="Hard"></MenuItem>
+                    <MenuItem x:Name="MenuImpossibleDiff" Header="Impossible"></MenuItem>
+                </MenuItem>
                 <Separator/>
                 <MenuItem x:Name="MenuExit" Header="Exit"/>
             </MenuItem>
