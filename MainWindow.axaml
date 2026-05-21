@@ -16,7 +16,7 @@
             <MenuItem Header="File">
                 <MenuItem Header="New Game(unfunctional)"/>
                 <Separator/>
-                <MenuItem Header="Exit"/>
+                <MenuItem x:Name="MenuExit" Header="Exit"/>
             </MenuItem>
 
             <MenuItem Header="Edit">
