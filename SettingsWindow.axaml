@@ -13,25 +13,12 @@
                  HorizontalAlignment="Center"/>
         <TextBox x:Name="MineBox" PlaceholderText="Mine percentage, defaults to 12% of cells" Background="SlateGray"
                  HorizontalAlignment="Center"/>
-        <Button Content="- Start New Game -" Background="SlateGray"
+        <Button Content="- Start Custom Game -" Background="SlateGray"
                 HorizontalAlignment="Center"
                 FontSize="20"
                 Click="NewGame_Click"/>
         
         <Separator Background="Black"></Separator>
-        
-        <Button x:Name="EasyDiff" Content="EASY" Background="Black" Click="Easy_Click">
-            
-        </Button>
-        <Button x:Name="MediumDiff" Content="MEDIUM" Background="Black" Click="Medium_Click">
-            
-        </Button>
-        <Button x:Name="HardDiff" Content="HARD" Background="Black" Click="Hard_Click">
-            
-        </Button>
-        <Button x:Name="ImpossibleDiff" Content="IMPOSSIBLE" Background="Black" Click="Impossible_Click">
-            
-        </Button>
     </StackPanel>
 
 </Window>
