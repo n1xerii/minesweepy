@@ -166,6 +166,7 @@ public partial class MainWindow : Window
             return;
 
         Cell cell = cells[row, col];
+        Button button = buttons[row, col];
 
         if (cell.revealed) return;
         if (cell.flagged)
@@ -175,8 +176,6 @@ public partial class MainWindow : Window
         }
 
         cell.revealed = true;
-
-        Button button = buttons[row, col];
         
         if (cell.isBomb)
         {
@@ -296,7 +295,7 @@ public partial class MainWindow : Window
             MakeMines(Rows, Columns,  MineCount, r, c);
             firstClick = false;
         }
-
+        
         RecursiveCellReveal(r, c);
     }
     private void Cell_RightClick(object? sender, RoutedEventArgs e)
