@@ -325,10 +325,7 @@ public partial class MainWindow : Window
     
     // SETTINGS
     private void Settings_Click(object? sender, RoutedEventArgs e)
-    {
-        //settings = new SettingsWindow(this);
-        settings.Show();
-    }
+    { settings.Show(); }
     
     // EXIT
     private void Exit() { settings.Close(); Close(); }
