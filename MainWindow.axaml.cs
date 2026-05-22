@@ -289,8 +289,6 @@ public partial class MainWindow : Window
         if (sender is not Button button)
             return;
         
-        Console.WriteLine("Left click");
-        
         var (r, c) = ((int, int))button.Tag;
         
         if (firstClick) // Generate bombs after first click
@@ -307,8 +305,6 @@ public partial class MainWindow : Window
             return;
         
         var (r, c) = ((int, int))button.Tag;
-        
-        Console.WriteLine("Right click");
         
         FlagCell(r, c);
     }
