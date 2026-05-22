@@ -276,6 +276,8 @@ public partial class MainWindow : Window
         
         Cell thisCell = cells[row, col];
         Button cellBtn = buttons[row, col];
+
+        if (thisCell.revealed) { return; }
         
         thisCell.flagged = !thisCell.flagged;
 
