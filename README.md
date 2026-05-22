@@ -1,2 +1,2 @@
 # minesweepy
- Avalonia minesweeper app.
+ Minesweeper app made with Avalonia UI and C#.
