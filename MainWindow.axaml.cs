@@ -179,7 +179,7 @@ public partial class MainWindow : Window
 
         cell.revealed = true;
         
-        if (cell.isBomb)
+        if (cell.isMine)
         {
             button.Background = Brushes.Red;
             GameOver();
@@ -238,7 +238,7 @@ public partial class MainWindow : Window
             if (mines[row, col]) continue;
 
             mines[row, col] = true;
-            cells[row, col].isBomb = true;
+            cells[row, col].isMine = true;
             placed++;
         }
     }
@@ -260,7 +260,7 @@ public partial class MainWindow : Window
                     neighborCol < 0 || neighborCol >= Columns)
                     continue;
 
-                if (cells[neighborRow, neighborCol].isBomb)
+                if (cells[neighborRow, neighborCol].isMine)
                     count++;
             }
         }
@@ -340,7 +340,7 @@ public partial class MainWindow : Window
 
         foreach (Cell cell in cells)
         {
-            if (cell.isBomb) continue;
+            if (cell.isMine) continue;
 
             cell.myBtn.Click -= Cell_Click;
             cell.myBtn.Click += null;
@@ -350,7 +350,7 @@ public partial class MainWindow : Window
         
         foreach (Cell cell in cells)
         {
-            if (cell.isBomb)
+            if (cell.isMine)
             {
                 cell.myBtn.Background = Brushes.DarkRed;
             }
