@@ -17,6 +17,8 @@ public partial class MainWindow : Window
     private int columns;
     private int mineCount;
     private bool lostGame = false;
+    private bool wonGame = false;
+    int winCount = 0;
     
     public int Rows
     {
@@ -111,6 +113,7 @@ public partial class MainWindow : Window
         Columns = amountOfCols;
         MineCount = amountOfMines;
 
+        wonGame = false;
         lostGame = false;
         firstClick = true;
     }
@@ -178,6 +181,8 @@ public partial class MainWindow : Window
         }
 
         cell.revealed = true;
+        winCount++; // increase win count on every reveal
+        WinCondition();
         
         if (cell.isMine)
         {
@@ -330,6 +335,36 @@ public partial class MainWindow : Window
     private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
     private void TopLevel_OnClosed(object? sender, EventArgs e) { Exit(); }
     
+    // WIN
+    private void WinCondition()
+    {
+        // Check win condition and turn button colors
+        if (winCount == Rows * Columns - MineCount)
+        {
+            wonGame = true;
+        
+            if (buttons == null) return;
+            if (cells == null) return;
+
+            foreach (Cell cell in cells)
+            {
+                if (cell.isMine) continue;
+
+                cell.myBtn.Click -= Cell_Click;
+                cell.myBtn.Click += null;
+
+                cell.myBtn.Background = Brushes.Green;
+            }
+            foreach (Cell cell in cells)
+            {
+                if (cell.isMine)
+                {
+                    cell.myBtn.Background = Brushes.LawnGreen;
+                }
+            }
+        }
+    }
+    
     // GAMEOVER
     private void GameOver()
     {
@@ -347,7 +382,6 @@ public partial class MainWindow : Window
 
             cell.myBtn.Background = Brushes.DarkSlateGray;
         }
-        
         foreach (Cell cell in cells)
         {
             if (cell.isMine)
