@@ -16,6 +16,7 @@ public partial class MainWindow : Window
     private int rows;
     private int columns;
     private int mineCount;
+    private bool lostGame = false;
     
     public int Rows
     {
@@ -109,7 +110,8 @@ public partial class MainWindow : Window
         Rows = amountOfRows;
         Columns = amountOfCols;
         MineCount = amountOfMines;
-        
+
+        lostGame = false;
         firstClick = true;
     }
     public void MakeBoard()
@@ -180,7 +182,7 @@ public partial class MainWindow : Window
         if (cell.isBomb)
         {
             button.Background = Brushes.Red;
-            // GameOver();
+            GameOver();
             return;
         }
 
@@ -269,7 +271,8 @@ public partial class MainWindow : Window
     // FLAGGING
     private void FlagCell(int row, int col)
     {
-        if (cells == null) { return; }
+        if (lostGame) return;
+        if (cells == null) return;
         
         Cell thisCell = cells[row, col];
         Button cellBtn = buttons[row, col];
@@ -331,4 +334,31 @@ public partial class MainWindow : Window
     private void Exit() { settings.Close(); Close(); }
     private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
     private void TopLevel_OnClosed(object? sender, EventArgs e) { Exit(); }
+    
+    // GAMEOVER
+    private void GameOver()
+    {
+        lostGame = true;
+        
+        if (buttons == null) return;
+        if (cells == null) return;
+
+        foreach (Cell cell in cells)
+        {
+            if (cell.isBomb) continue;
+
+            cell.myBtn.Click -= Cell_Click;
+            cell.myBtn.Click += null;
+
+            cell.myBtn.Background = Brushes.DarkSlateGray;
+        }
+        
+        foreach (Cell cell in cells)
+        {
+            if (cell.isBomb)
+            {
+                cell.myBtn.Background = Brushes.DarkRed;
+            }
+        }
+    }
 }
