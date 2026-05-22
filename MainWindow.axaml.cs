@@ -52,7 +52,7 @@ public partial class MainWindow : Window
     public readonly double mediumMinePercentage = 0.16;
     public readonly double hardMinePercentage = 0.20;
     public readonly double impossibleMinePercentage = 0.30;
-    
+
     public MainWindow()
     {
         InitializeComponent();
@@ -133,6 +133,7 @@ public partial class MainWindow : Window
                 
                 var button = new Button();
                 buttons[r, c] = button;
+                cells[r, c].myBtn = button;
                     
                 button.Tag = (r, c);
                 button.Name =  $"{r}_{c}";
