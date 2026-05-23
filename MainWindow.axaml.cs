@@ -189,11 +189,9 @@ public partial class MainWindow : Window
             GameOver();
             return;
         }
-
         button.Background = Brushes.Green;
         
         int adjMineCount = CountAdjacentMines(row, col);   // check adjacent mines
-        
         if (adjMineCount > 0)
         {
             button.Content = adjMineCount.ToString();   // set button text to adjacent mine count
