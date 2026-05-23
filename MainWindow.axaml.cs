@@ -9,16 +9,15 @@ public partial class MainWindow : Window
 {
     private SettingsWindow settings;
     
+    // DATA
     private Cell[,]? cells;
     private Button[,]? buttons;
-    
-    // DATA
     private int rows;
     private int columns;
     private int mineCount;
     private bool lostGame = false;
     private bool wonGame = false;
-    int winCount = 0;
+    int winConditionCount = 0;
     
     public int Rows
     {
@@ -99,7 +98,7 @@ public partial class MainWindow : Window
         }
     }
 
-    // GAMEBOARD
+    // BOARD
     public void SetGameData(int amountOfRows, int amountOfCols, int amountOfMines)
     {
         Rows = 0;
@@ -181,7 +180,7 @@ public partial class MainWindow : Window
         }
 
         cell.revealed = true;
-        winCount++; // increase win count on every reveal
+        winConditionCount++; // increase win count on every reveal
         WinCondition();
         
         if (cell.isMine)
@@ -193,17 +192,17 @@ public partial class MainWindow : Window
 
         button.Background = Brushes.Green;
         
-        int bombCount = CountAdjacentMines(row, col);
-
-        if (bombCount > 0)
+        int adjMineCount = CountAdjacentMines(row, col);   // check adjacent mines
+        
+        if (adjMineCount > 0)
         {
-            button.Content = bombCount.ToString();
+            button.Content = adjMineCount.ToString();   // set button text to adjacent mine count
             
+            // responsive font
             button.FontSize = 20.0;
-            // FONT(responsive)
             button.LayoutUpdated += (_, __) =>
             {
-                if (bombCount <= 0) return;
+                if (adjMineCount <= 0) return;
                 var w = button.Bounds.Width;
                 var h = button.Bounds.Height;
                 if (w > 0 && h > 0) button.FontSize = Math.Min(w, h) * 0.6;
@@ -278,6 +277,7 @@ public partial class MainWindow : Window
     {
         if (lostGame) return;
         if (cells == null) return;
+        if (buttons == null) return;
         
         Cell thisCell = cells[row, col];
         Button cellBtn = buttons[row, col];
@@ -315,31 +315,12 @@ public partial class MainWindow : Window
         
         FlagCell(r, c);
     }
-
-    // TOP MENU
-    private void MenuEasy_Click(object? sender, RoutedEventArgs e)
-    { StartDifficulty("Easy"); }
-    private void MenuMedium_Click(object? sender, RoutedEventArgs e)
-    { StartDifficulty("Medium"); }
-    private void MenuHard_Click(object? sender, RoutedEventArgs e)
-    { StartDifficulty("Hard"); }
-    private void MenuImpossible_Click(object? sender, RoutedEventArgs e)
-    { StartDifficulty("Impossible"); }
-    
-    // SETTINGS
-    private void Settings_Click(object? sender, RoutedEventArgs e)
-    { settings.Show(); }
-    
-    // EXIT
-    private void Exit() { settings.Close(); Close(); }
-    private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
-    private void TopLevel_OnClosed(object? sender, EventArgs e) { Exit(); }
     
     // WIN
     private void WinCondition()
     {
         // Check win condition and turn button colors
-        if (winCount == Rows * Columns - MineCount)
+        if (winConditionCount == Rows * Columns - MineCount)
         {
             wonGame = true;
         
@@ -364,8 +345,7 @@ public partial class MainWindow : Window
             }
         }
     }
-    
-    // GAMEOVER
+    // LOSE
     private void GameOver()
     {
         lostGame = true;
@@ -390,4 +370,23 @@ public partial class MainWindow : Window
             }
         }
     }
+    
+    // TOP MENU
+    private void MenuEasy_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Easy"); }
+    private void MenuMedium_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Medium"); }
+    private void MenuHard_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Hard"); }
+    private void MenuImpossible_Click(object? sender, RoutedEventArgs e)
+    { StartDifficulty("Impossible"); }
+    
+    // SETTINGS
+    private void Settings_Click(object? sender, RoutedEventArgs e)
+    { settings.Show(); }
+    
+    // EXIT
+    private void Exit() { settings.Close(); Close(); }
+    private void Exit_Click(object? sender, RoutedEventArgs e) { Exit(); }
+    private void TopLevel_OnClosed(object? sender, EventArgs e) { Exit(); }
 }
