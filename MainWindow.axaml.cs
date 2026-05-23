@@ -319,8 +319,10 @@ public partial class MainWindow : Window
     // WIN
     private void WinCondition()
     {
+        int mustReveal = Rows * Columns - MineCount;
+        
         // Check win condition and turn button colors
-        if (winConditionCount == Rows * Columns - MineCount)
+        if (winConditionCount >= mustReveal)
         {
             wonGame = true;
         
