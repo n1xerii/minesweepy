@@ -112,6 +112,7 @@ public partial class MainWindow : Window
         Columns = amountOfCols;
         MineCount = amountOfMines;
 
+        winConditionCount = 0;
         wonGame = false;
         lostGame = false;
         firstClick = true;
@@ -273,7 +274,7 @@ public partial class MainWindow : Window
     // FLAGGING
     private void FlagCell(int row, int col)
     {
-        if (lostGame) return;
+        if (lostGame || wonGame) return;
         if (cells == null) return;
         if (buttons == null) return;
         
@@ -291,6 +292,7 @@ public partial class MainWindow : Window
     // CLICKS
     private void Cell_Click(object? sender, RoutedEventArgs e)
     {
+        if (lostGame || wonGame) return;
         if (sender is not Button button)
             return;
         
