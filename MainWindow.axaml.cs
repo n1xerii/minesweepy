@@ -76,8 +76,8 @@ public partial class MainWindow : Window
         SetGameData(newRows, newColumns, finalMines);
         MakeBoard();
         
-        Console.WriteLine("Cells: " + cells.Length);
-        Console.WriteLine("Mines: " + finalMines);
+        Console.WriteLine("* Cells: " + cells.Length + " *");
+        Console.WriteLine("* Mines: " + finalMines + " *");
     }
     public void StartDifficulty(string diff)
     {
@@ -182,7 +182,7 @@ public partial class MainWindow : Window
         if (cell.revealed) return;
         if (cell.flagged)
         {
-            Console.WriteLine("**Unflag before clicking.");
+            Console.WriteLine("** Unflag before clicking **");
             return;
         }
 
