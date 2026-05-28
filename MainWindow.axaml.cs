@@ -1,4 +1,5 @@
 using System;
+using System.Timers;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Media;
@@ -54,6 +55,10 @@ public partial class MainWindow : Window
     public readonly double mediumMinePercentage = 0.16;
     public readonly double hardMinePercentage = 0.20;
     public readonly double impossibleMinePercentage = 0.30;
+    
+    // TIMER
+    private Timer timer;
+    private int seconds = 0;
 
     public MainWindow()
     {
@@ -112,6 +117,7 @@ public partial class MainWindow : Window
         Columns = amountOfCols;
         MineCount = amountOfMines;
 
+        if (timer != null) EndGameTimer();
         winConditionCount = 0;
         wonGame = false;
         lostGame = false;
@@ -302,6 +308,7 @@ public partial class MainWindow : Window
         {
             MakeMines(Rows, Columns,  MineCount, r, c);
             firstClick = false;
+            StartGameTimer();
         }
         
         RecursiveCellReveal(r, c);
@@ -325,6 +332,7 @@ public partial class MainWindow : Window
         if (winConditionCount >= mustReveal)
         {
             wonGame = true;
+            EndGameTimer();
         
             if (buttons == null) return;
             if (cells == null) return;
@@ -351,6 +359,7 @@ public partial class MainWindow : Window
     private void GameOver()
     {
         lostGame = true;
+        EndGameTimer();
         
         if (buttons == null) return;
         if (cells == null) return;
@@ -371,6 +380,24 @@ public partial class MainWindow : Window
                 cell.myBtn.Background = Brushes.DarkRed;
             }
         }
+    }
+    // TIMER
+    public void StartGameTimer()
+    {
+        timer = new Timer(1000);
+        timer.Elapsed += OnTimerElapsed;
+        timer.AutoReset = true;
+        timer.Start();
+    }
+    private void EndGameTimer()
+    {
+        timer.Stop(); 
+        seconds = 0;
+    }
+    private void OnTimerElapsed(object sender, ElapsedEventArgs e)
+    {
+        seconds++;
+        Console.WriteLine("*** Time: " + seconds + " ***");
     }
     
     // TOP MENU
